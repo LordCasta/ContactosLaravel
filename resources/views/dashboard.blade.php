@@ -11,6 +11,26 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a href="{{route('contact.create')}}">Crear contacto</a>
+                </div>
+                <div class="bg-white">
+                   <ul>
+                @forelse($contacts as $con)
+                    <li><p>{{$con->name}}</p>
+                        <a href="{{route('contact.show', $con->id)}}">View</a> ||
+                        <a href="{{ route('contact.edit', ['contact' => $con->id]) }}">EDIT</a> |
+                        <form method="post" action="{{route('contact.destroy', $con->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="DELETE" />
+                        </form>
+                    </li>
+                        @empty
+                            <p>No data.</p>
+                    @endforelse
+                </ul>
+                </div>
             </div>
         </div>
     </div>

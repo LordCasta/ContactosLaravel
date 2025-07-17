@@ -12,4 +12,6 @@ class Contact extends Model
         return $this->belongsTo(User::class);
     }
 
+    protected $fillable = ['name', 'phone_number', 'note', 'user_id'];
+
 }
